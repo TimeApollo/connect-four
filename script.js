@@ -39,9 +39,7 @@ function piecePlace(event){
     updateBoardArray( column , rowToBeFilled , currentPlayer );
     updateCurrentPlayer( currentPlayer , nextPlayer );
     updateNumOfPiecesPlaced(column);
-    winHorizontal();
-    winVertical();
-    winDiagnolRight();
+    winning();
     if(winner === "black"){
         infoLine.textContent = "Black is the winner"
     }else if(winner === "red"){
@@ -91,7 +89,10 @@ function updateNumOfPiecesPlaced(column){
 }
 
 function winning(){
-
+    winHorizontal();
+    winVertical();
+    winDiagnolRight();
+    winDiagnolLeft();
 }
 
 function winHorizontal(){
@@ -118,7 +119,6 @@ function winHorizontal(){
             
         }
     }
-    return winner = "none";
 }
 
 function winVertical(){
@@ -144,7 +144,6 @@ function winVertical(){
             
         }
     }
-    return winner = "none";
 }
 
 function winDiagnolRight(){
@@ -171,18 +170,17 @@ function winDiagnolRight(){
             
         }
     }
-    return winner = "none";
 }
 
 function winDiagnolLeft(){
     //from left to right, top to bottom
     for (let winColumns = 0; winColumns < 4; winColumns++ ){
-        for (let winRows = 0; winRows < 3 ; winRows++){
+        for (let winRows = 3; winRows < 6 ; winRows++){
 
             let pieceZero = board[ winColumns ][ winRows ];
-            let pieceOne = board[ winColumns ][ winRows + 1 ];
-            let pieceTwo = board[ winColumns ][ winRows + 2 ];
-            let pieceThree = board[ winColumns ][ winRows + 3 ];
+            let pieceOne = board[ winColumns + 1 ][ winRows - 1 ];
+            let pieceTwo = board[ winColumns + 2 ][ winRows - 2 ];
+            let pieceThree = board[ winColumns + 3 ][ winRows - 3 ];
 
             if( pieceZero === 2 ){
                 if( pieceZero === pieceOne && pieceZero === pieceTwo && pieceZero === pieceThree){
@@ -198,7 +196,6 @@ function winDiagnolLeft(){
             
         }
     }
-    return winner = "none";
 }
 
 function initialize(){
