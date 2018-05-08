@@ -1,0 +1,60 @@
+#gridContainer {
+    display: grid;
+    width: 700px;
+    grid-template-rows: 600px;
+    grid-template-columns: repeat(7,1fr);
+    background-color: green;
+    border: black 1px solid;
+    grid-auto-flow: column;
+}
+
+section div[data-positionfilled = 'empty']{
+    border-radius: 50%;
+    background-color: white;
+}
+
+section div[data-positionfilled = 'red']{
+    border-radius: 50%;
+    background-color: red;
+}
+
+section div[data-positionfilled = 'black']{
+    border-radius: 50%;
+    background-color: black;
+}
+
+#gridColumnOne {
+    display:grid ;
+    border: black 1px solid ;
+}
+
+#gridColumnTwo {
+    display:grid ;
+    border: black 1px solid ;
+}
+
+#gridColumnThree {
+    display:grid ;
+    border: black 1px solid ;
+}
+
+#gridColumnFour {
+    display:grid ;
+    border: black 1px solid ;
+}
+
+#gridColumnFive {
+    display:grid ;
+    border: black 1px solid ;
+}
+
+#gridColumnSix {
+    display:grid ;
+    border: black 1px solid ;
+}
+
+#gridColumnSeven {
+    display:grid ;
+    border: black 1px solid ;
+}
+
