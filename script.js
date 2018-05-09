@@ -1,9 +1,12 @@
 const columns = document.querySelectorAll("section"); //this accesses each column
-const boardPositions = document.querySelectorAll("div"); //this is to access each grid position
+const boardPositions = document.querySelectorAll(".piece"); //this is to access each grid position
 const infoLine = document.getElementById("info"); //access to text below board
+infoLine.textContent = "Red Players Turn First"
+const initialPiece = document.getElementById("topPiece");
 let currentPlayer = "RedPlayer";
 let nextPlayer = "BlackPlayer";
 let winner = "none";
+let mouse = {x:0}
 
 /* This makes the board. value of 0 is empty. value of 1 is Red. Value of 2 is black */
 let board = new Array(7);
@@ -16,6 +19,7 @@ for (let boardColumns = 0; boardColumns < 7; boardColumns++ ){
 
 
 initialize(); //initializes all event listeners and data attributes
+setInterval(followMouse, 50); //calls the followmouse event every 50 ms. updates the mouse position
 
 function piecePlace(event){
     let columnClicked = event.currentTarget;
@@ -78,9 +82,11 @@ function updateCurrentPlayer( current , next ){
     if( current === "RedPlayer"){
         currentPlayer = next;
         nextPlayer = "RedPlayer"
+        initialPiece.setAttribute( "class" , "black" );
     }else{
         currentPlayer = next;
         nextPlayer = "BlackPlayer"
+        initialPiece.setAttribute( "class" , "red" )
     }
 }
 
@@ -209,4 +215,24 @@ function initialize(){
         boardPositions[numOfBoardPositions].setAttribute("data-row","" + 5 - numOfBoardPositions%6 + "");
         boardPositions[numOfBoardPositions].setAttribute("data-column" , "" + Math.floor(numOfBoardPositions/6) + "");
     }
+
+    document.addEventListener("mousemove", getMouse);
+}
+
+function getMouse(event){
+    mouse.x = event.pageX
+}
+
+function followMouse(){
+    let minDist = 60;
+    let maxDist = 660;
+    let distX = minDist;
+    if(mouse.x < maxDist && mouse.x > minDist){
+        distX = mouse.x - minDist;
+    }else if (mouse.x >= maxDist){
+        distX = maxDist - minDist;
+    }else{
+        distX = 0;
+    }
+    initialPiece.style.transform =  "translate(" + distX + "px)";
 }

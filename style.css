@@ -1,3 +1,52 @@
+#abovePieceWrapper {
+    width: 700px;
+    height: 100px;
+    border: black 1px solid;
+    position: relative;
+}
+
+.redAnimation {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: red;
+    animation: dropPiece;
+}
+
+.blackAnimation {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: black;
+    animation: dropPiece;
+}
+
+.black {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.red {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+div[data-direction = 'right'] {
+    transform: translate(55px);
+}
+
+@keyframes dropPiece {
+    from {
+        margin-bottom: 100%;
+    }to {
+        margin-bottom: 0%;
+    }
+}
+
 #gridContainer {
     display: grid;
     width: 700px;
@@ -6,11 +55,14 @@
     background-color: green;
     border: black 1px solid;
     grid-auto-flow: column;
+    z-index: -1;
 }
 
 section div[data-positionfilled = 'empty']{
     border-radius: 50%;
     background-color: white;
+    z-index: 0;
+    /*animation: dropPiece 1s linear;*/
 }
 
 section div[data-positionfilled = 'red']{
