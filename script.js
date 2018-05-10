@@ -1,8 +1,9 @@
 const columns = document.querySelectorAll("section"); //this accesses each column
 const boardPositions = document.querySelectorAll(".piece"); //this is to access each grid position
 const infoLine = document.getElementById("info"); //access to text below board
-infoLine.textContent = "Red Players Turn First"
+infoLine.textContent = "Red Player's Turn First"
 const initialPiece = document.getElementById("topPiece");
+const resetButton = document.getElementById("resetButton");
 let currentPlayer = "RedPlayer";
 let nextPlayer = "BlackPlayer";
 let winner = "none";
@@ -22,6 +23,7 @@ initialize(); //initializes all event listeners and data attributes
 setInterval(followMouse, 50); //calls the followmouse event every 50 ms. updates the mouse position
 
 function piecePlace(event){
+    console.log(board)
     let columnClicked = event.currentTarget;
     let column = columnClicked.dataset.column;
     //pieces placed equal rowtobefilled due to starting board at index 0 for rows and columns
@@ -45,9 +47,11 @@ function piecePlace(event){
     updateNumOfPiecesPlaced(column);
     winning();
     if(winner === "black"){
-        infoLine.textContent = "Black is the winner"
+        infoLine.textContent = "Black is the winner!!!"
+        blackWinner();
     }else if(winner === "red"){
-        infoLine.textContent = "Red is the winner"
+        infoLine.textContent = "Red is the winner!!!"
+        redWinner();
     }else{
         infoLine.textContent = currentPlayer + "'s turn"
     }
@@ -217,6 +221,7 @@ function initialize(){
     }
 
     document.addEventListener("mousemove", getMouse);
+    resetButton.addEventListener("click" , resetBoard);
 }
 
 function getMouse(event){
@@ -235,4 +240,39 @@ function followMouse(){
         distX = 0;
     }
     initialPiece.style.transform =  "translate(" + distX + "px)";
+}
+
+function resetBoard(){
+    columns.forEach((column, index, columns )=> columns[index].dataset.numofpiecesplaced = 0);
+    console.log(columns)
+    initialPiece.setAttribute( "class" , "red" );
+    board.forEach(column => {
+        column.forEach((row , index , column) =>  column[index]=0)
+    });
+    boardPositions.forEach((piece, index) => boardPositions[index].dataset.positionfilled = "empty");
+    infoLine.textContent = "Red Player's Turn First";
+    winner = "none";
+    initialPiece.setAttribute( "class" , "red" );
+    currentPlayer = "RedPlayer";
+    nextPlayer = "BlackPlayer";
+}
+
+function redWinner(){
+    boardPositions.forEach((piece, index) => boardPositions[index].dataset.positionfilled = "red");
+    initialPiece.setAttribute( "class" , "" );
+    setTimeout(redWinnerAnimation, 125);
+}
+
+function blackWinner(){
+    boardPositions.forEach((piece, index) => boardPositions[index].dataset.positionfilled = "black");
+    initialPiece.setAttribute( "class" , "" );
+    setTimeout(blackWinnerAnimation, 125);
+}
+
+function redWinnerAnimation(){
+    boardPositions.forEach((piece, index) => boardPositions[index].dataset.positionfilled = "redToWhiteAnimation");
+}
+
+function blackWinnerAnimation(){
+    boardPositions.forEach((piece, index) => boardPositions[index].dataset.positionfilled = "blackToWhiteAnimation");
 }

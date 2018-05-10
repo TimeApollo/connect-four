@@ -1,24 +1,57 @@
+#heading {
+    width: 700px;
+    height: 100px;
+}
+
+h1 {
+    font-size: 3em;
+    position: relative;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
 #abovePieceWrapper {
     width: 700px;
     height: 100px;
-    border: black 1px solid;
     position: relative;
 }
 
-.redAnimation {
+section div[data-positionfilled = 'redToWhiteAnimation'] {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     background-color: red;
-    animation: dropPiece;
+    animation: flashredtowhite;
+    animation-duration: .5s;
+    animation-iteration-count: 5;
 }
 
-.blackAnimation {
+section div[data-positionfilled = 'blackToWhiteAnimation'] {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     background-color: black;
-    animation: dropPiece;
+    animation: flashblacktowhite;
+    animation-duration: .5s;
+    animation-iteration-count: 5;
+    /* animation-timing-function: ease-in-out; */
+}
+
+@keyframes flashredtowhite {
+    0% , 100%{
+        background-color: red;
+    }50% {
+        background-color: white;
+    }
+}
+
+@keyframes flashblacktowhite {
+    0% , 100% {
+        background-color: black;
+    }50% {
+        background-color: white;
+    }
 }
 
 .black {
@@ -39,23 +72,25 @@ div[data-direction = 'right'] {
     transform: translate(55px);
 }
 
-@keyframes dropPiece {
-    from {
-        margin-bottom: 100%;
-    }to {
-        margin-bottom: 0%;
-    }
-}
-
 #gridContainer {
     display: grid;
     width: 700px;
     grid-template-rows: 600px;
     grid-template-columns: repeat(7,1fr);
-    background-color: green;
     border: black 1px solid;
     grid-auto-flow: column;
     z-index: -1;
+    background-color: white;
+}
+
+.gridColumn:hover {
+    background-color: lightgreen;
+}
+
+.gridColumn {
+    display:grid ;
+    border: black 1px solid ;
+    background-color: green;
 }
 
 section div[data-positionfilled = 'empty']{
@@ -75,38 +110,40 @@ section div[data-positionfilled = 'black']{
     background-color: black;
 }
 
-#gridColumnOne {
-    display:grid ;
-    border: black 1px solid ;
+#bottomContainer {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100px;
+    width: 702px;
+    /* border: black 2px solid; */
+    box-sizing: border-box;
+    margin-top: 25px;
 }
 
-#gridColumnTwo {
-    display:grid ;
-    border: black 1px solid ;
+.bottomContainerElement {
+    /* border: black 2px solid; */
 }
 
-#gridColumnThree {
-    display:grid ;
-    border: black 1px solid ;
+#info {
+    /* border: 2px black solid; */
+    text-align: center;
 }
 
-#gridColumnFour {
-    display:grid ;
-    border: black 1px solid ;
+#resetButton {
+   align-self: flex-start;
 }
 
-#gridColumnFive {
-    display:grid ;
-    border: black 1px solid ;
+#bottomInfoContent {
+    width: 600px;
+    font-size: 2em;
 }
 
-#gridColumnSix {
-    display:grid ;
-    border: black 1px solid ;
+#resetButtonContainer{
+    display: flex;
+    width: 100px;
+    justify-content: flex-end;
 }
 
-#gridColumnSeven {
-    display:grid ;
-    border: black 1px solid ;
-}
+
+
 

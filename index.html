@@ -16,7 +16,7 @@
         <div id="topPiece" class="red" data-direction="right"></div>
       </article>
         <article id="gridContainer">
-            <section id="gridColumnOne" data-column = "0">
+            <section class="gridColumn" id="gridColumnOne" data-column = "0">
                 <div class = "piece" id="gridColumnOneRowOne"></div>
                 <div class = "piece" id="gridColumnOneRowTwo"></div>
                 <div class = "piece" id="gridColumnOneRowThree"></div>
@@ -24,7 +24,7 @@
                 <div class = "piece" id="gridColumnOneRowFive"></div>
                 <div class = "piece" id="gridColumnOneRowSix"></div>
             </section>
-            <section id="gridColumnTwo" data-column = "1">
+            <section class="gridColumn" id="gridColumnTwo" data-column = "1">
                 <div class = "piece" id="gridColumnTwoRowOne"></div>
                 <div class = "piece" id="gridColumnTwoRowTwo"></div>
                 <div class = "piece" id="gridColumnTwoRowThree"></div>
@@ -32,7 +32,7 @@
                 <div class = "piece" id="gridColumnTwoRowFive"></div>
                 <div class = "piece" id="gridColumnTwoRowSix"></div>
             </section>
-            <section id="gridColumnThree" data-column = "2">
+            <section class="gridColumn" id="gridColumnThree" data-column = "2">
                 <div class = "piece" id="gridColumnThreeRowOne"></div>
                 <div class = "piece" id="gridColumnThreeRowTwo"></div>
                 <div class = "piece" id="gridColumnThreeRowThree"></div>
@@ -40,7 +40,7 @@
                 <div class = "piece" id="gridColumnThreeRowFive"></div>
                 <div class = "piece" id="gridColumnThreeRowSix"></div>
             </section>
-            <section id="gridColumnFour" data-column = "3">
+            <section class="gridColumn" id="gridColumnFour" data-column = "3">
                 <div class = "piece" id="gridColumnFourRowOne"></div>
                 <div class = "piece" id="gridColumnFourRowTwo"></div>
                 <div class = "piece" id="gridColumnFourRowThree"></div>
@@ -48,7 +48,7 @@
                 <div class = "piece" id="gridColumnFourRowFive"></div>
                 <div class = "piece" id="gridColumnFourRowSix"></div>
             </section>
-            <section id="gridColumnFive" data-column = "4">
+            <section class="gridColumn" id="gridColumnFive" data-column = "4">
                 <div class = "piece" id="gridColumnFiveRowOne"></div>
                 <div class = "piece" id="gridColumnFiveRowTwo"></div>
                 <div class = "piece" id="gridColumnFiveRowThree"></div>
@@ -56,7 +56,7 @@
                 <div class = "piece" id="gridColumnFiveRowFive"></div>
                 <div class = "piece" id="gridColumnFiveRowSix"></div>
             </section>
-            <section id="gridColumnSix" data-column = "5">
+            <section class="gridColumn" id="gridColumnSix" data-column = "5">
                 <div class = "piece" id="gridColumnSixRowOne"></div>
                 <div class = "piece" id="gridColumnSixRowTwo"></div>
                 <div class = "piece" id="gridColumnSixRowThree"></div>
@@ -64,7 +64,7 @@
                 <div class = "piece" id="gridColumnSixRowFive"></div>
                 <div class = "piece" id="gridColumnSixRowSix"></div>
             </section>
-            <section id="gridColumnSeven" data-column = "6">
+            <section class="gridColumn" id="gridColumnSeven" data-column = "6">
                 <div class = "piece" id="gridColumnSevenRowOne"></div>
                 <div class = "piece" id="gridColumnSevenRowTwo"></div>
                 <div class = "piece" id="gridColumnSevenRowThree"></div>
@@ -73,8 +73,13 @@
                 <div class = "piece" id="gridColumnSevenRowSix"></div>
             </section>
         </article>
-        <article>
+        <article id="bottomContainer">
+          <div class="bottomContainerElement" id="bottomInfoContent">
           <p id="info"></p>
+        </div>
+          <div id="resetButtonContainer" class="bottomContainerElement">
+          <button id="resetButton">Game Reset</button>
+        </div>
         </article>
     </main>
     <script src="script.js" type="text/javascript"></script>
