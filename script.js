@@ -8,6 +8,7 @@ let currentPlayer = "RedPlayer";
 let nextPlayer = "BlackPlayer";
 let winner = "none";
 let mouse = {x:0}
+let notGameTie = 0;
 
 /* This makes the board. value of 0 is empty. value of 1 is Red. Value of 2 is black */
 let board = new Array(7);
@@ -46,14 +47,20 @@ function piecePlace(event){
     updateCurrentPlayer( currentPlayer , nextPlayer );
     updateNumOfPiecesPlaced(column);
     winning();
+    tieGame();
     if(winner === "black"){
         infoLine.textContent = "Black is the winner!!!"
         blackWinner();
     }else if(winner === "red"){
         infoLine.textContent = "Red is the winner!!!"
         redWinner();
-    }else{
+    }else if (notGameTie === 0){
+        infoLine.textContent = "Game is a Draw!"
+        initialPiece.setAttribute( "class" , "" );
+    }
+    else{
         infoLine.textContent = currentPlayer + "'s turn"
+        notGameTie = 0;
     }
 
 }
@@ -103,6 +110,16 @@ function winning(){
     winVertical();
     winDiagnolRight();
     winDiagnolLeft();
+}
+
+function tieGame(){
+    board.forEach(column => {
+        column.forEach((row , index , column) => {
+            if (column[index]===0){
+                notGameTie += 1;
+            }
+        })
+    })
 }
 
 function winHorizontal(){
@@ -255,6 +272,7 @@ function resetBoard(){
     initialPiece.setAttribute( "class" , "red" );
     currentPlayer = "RedPlayer";
     nextPlayer = "BlackPlayer";
+    notGameTie = 0;
 }
 
 function redWinner(){
